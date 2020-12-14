@@ -3,5 +3,46 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "NgxGist": {
+      "projectType": "library",
+      "root": "projects/ngx-gist",
+      "sourceRoot": "projects/ngx-gist/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-gist/tsconfig.lib.json",
+            "project": "projects/ngx-gist/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-gist/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-gist/src/test.ts",
+            "tsConfig": "projects/ngx-gist/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-gist/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-gist/tsconfig.lib.json",
+              "projects/ngx-gist/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "NgxGist"
 }
